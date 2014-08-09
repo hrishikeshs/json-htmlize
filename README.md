@@ -14,9 +14,9 @@ Usage
 =====
 
 ```
-var s = require('json-htmlize');
+var htmlize = require('json-htmlize').toHtml;
 
-var html = s.toHtml({name: "mongo", type: "db", type: "nosql-database"}) 
+var html = htmlize({name: "mongo", type: "db", type: "nosql-database"}); 
 ```
 
 example
