@@ -1,7 +1,7 @@
 json-htmlize
 ============
 
-Spits out html from your server's json response.
+Spits out html from your json.
 
 
 Installing
