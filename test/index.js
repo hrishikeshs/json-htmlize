@@ -1,6 +1,12 @@
 var should = require('chai').should(),
     htmlize = require('../index'),
+    jsdom = require('jsdom'),
     jsonToHtml= htmlize.toHtml;
+
+var dom = jsdom.defaultLevel;
+
+
+// QuerySelector must be turned on on the specificdocument we're creating
 
 describe('#htmlstring', function() {
   it('returns a html string for the given json object', function() {
