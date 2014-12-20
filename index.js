@@ -12,17 +12,17 @@ Handlebars = require('handlebars');
 
 module.exports = {
 
-  toHtml: function (json) {
+  toHtml: function toHtml(json) {
 
     function prettyPrint(json, root) {
 
       var type = typeof json;
-
+      console.log(json);
       switch(type) {
 
-      case 'string' :
-                            return document.createTextNode(Handlebars.Utils.escapeExpression(json));
-
+      case 'string' :        var d = document.createElement('span');
+                             d.appendChild(document.createTextNode(Handlebars.Utils.escapeExpression(json)));
+                             return d;
       break;
 
       case 'number' :
@@ -43,7 +43,10 @@ module.exports = {
                               containerDiv.appendChild(json.reduce(function(prev, cur) {
                                 var comma = document.createTextNode(','),
                                     br = document.createElement('br');
-                                return prev.appendChild(comma).appendChild(br).appendChild(cur);
+                                prev.appendChild(comma);
+                                prev.appendChild(br);
+                                prev.appendChild(cur);
+                                return prev;
                               }));
                               containerDiv.style.marginLeft = "30px";
                               var documentFrag = document.createElement('div');
@@ -52,48 +55,45 @@ module.exports = {
                               documentFrag.appendChild(arrayClosing);
                               return documentFrag;
                             }
-        
-        else {
-          //none of the above so it is the object
-          if (json !== null) {
-            var keys = Object.keys(json);
-            var htmlArray = [],
-                div = null,
-                span2 = null,
-                colon = null,
-                strong = null,
-                doubleQuote= document.createTextNode('"');
-            for(var i = 0, len = keys.length; i < len; i++) {
-              var k = keys[i];
-              if(k.indexOf(' ') !== -1) {
-                k = '"' + k + '"';
-              }
-              div = document.createElement('div'),
-              strong = document.createElement('strong');
-              span2 = document.createElement('span');
-              strong.textContent = k;  
-              div.style.display = "inline";
-              span2.style.overflow = "auto";
-              colon = document.createTextNode(':');
-              div.appendChild(strong).appendChild(colon);
-              div.appendChild(span2).appendChild(prettyPrint(json[k], root));
-              htmlArray.push(div);
-            }
-            var openingBracket = document.createTextNode('{');
-            var documentDiv = document.createElement('div');
-            documentDiv.appendChild(openingBracket);
-            documentDiv.style.marginLeft = "30px";
-            htmlArray.forEach(function(docFrag) {
-              var lineBreak = document.createElement('br');
-              documentDiv.appendChild(docFrag);
-              documentDiv.appendChild(lineBreak);
-            });
-            root.appendChild(documentDiv);
-            root.appendChild(document.createTextNode('}'));
-            return root;
-          }
-          return root;
-        } 
+                           else {
+                             //none of the above so it is the object
+                             if (json !== null) {
+                               var keys = Object.keys(json);
+                               var htmlArray = [],
+                                   div = null,
+                                   br = document.createElement('br'),
+                                   span2 = null,
+                                   colon = null,
+                                   strong = null;
+                               for(var i = 0, len = keys.length; i < len; i++) {
+                                 var k = keys[i];
+                                 if(k.indexOf(' ') !== -1) {
+                                   k = '"' + k + '"';
+                                 }
+                                 div = document.createElement('div'),
+                                 strong = document.createElement('strong');
+                                 strong.textContent = k; 
+                                 div.style.marginLeft = "30px";
+                                 colon = document.createTextNode(':  ');
+                                 div.appendChild(strong).appendChild(colon);
+                                 div.appendChild(prettyPrint(json[keys[i]], div));
+                                 div.appendChild(document.createTextNode(','));
+                                 htmlArray.push(div);
+                               }
+                               var openingBracket = document.createElement('span');
+                               openingBracket.appendChild(document.createTextNode('{'));
+                               var documentDiv = document.createElement('div');
+                               documentDiv.appendChild(openingBracket);
+                               htmlArray.forEach(function(docFrag) {
+                                 documentDiv.appendChild(docFrag);
+                               });
+                               var closingBracket = document.createElement('span');
+                               closingBracket.appendChild(document.createTextNode('}'));
+                               documentDiv.appendChild(closingBracket);
+                               return documentDiv;
+                             }
+                             return root;
+                           }
       }
     }
     var root = document.createElement('div');
