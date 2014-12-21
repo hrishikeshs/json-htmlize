@@ -7,7 +7,6 @@
     "test": "make test"
   },
   "dependencies": {
-    "handlebars": "*"
   },
   "repository": {
     "type": "git",
