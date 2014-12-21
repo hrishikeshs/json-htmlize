@@ -1,4 +1,3 @@
-Handlebars = require('handlebars');
 (function() {
   if(typeof document === "undefined") {
     var jsdom = require('jsdom');
