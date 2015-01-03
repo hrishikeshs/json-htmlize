@@ -20,7 +20,7 @@ module.exports = {
       switch(type) {
 
       case 'string' :        var d = document.createElement('span');
-                             d.appendChild(document.createTextNode(Handlebars.Utils.escapeExpression(json)));
+                             d.appendChild(document.createTextNode(json));
                              return d;
       break;
 
@@ -28,7 +28,7 @@ module.exports = {
       case 'undefined' :
       case 'boolean' :
                             var span = document.createElement('span');
-                            span.appendChild(document.createTextNode(Handlebars.Utils.escapeExpression(json))); 
+                            span.appendChild(document.createTextNode(json)); 
                             return span;
                             
       break;
@@ -76,7 +76,9 @@ module.exports = {
                                  colon = document.createTextNode(':  ');
                                  div.appendChild(strong).appendChild(colon);
                                  div.appendChild(prettyPrint(json[keys[i]], div));
-                                 div.appendChild(document.createTextNode(','));
+                                 if((len - i) !== 1) {
+                                   div.appendChild(document.createTextNode(','));
+                                 }
                                  htmlArray.push(div);
                                }
                                var openingBracket = document.createElement('span');
