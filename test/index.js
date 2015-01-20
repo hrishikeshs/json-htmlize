@@ -1,17 +1,19 @@
-var should = require('chai').should(),
-    htmlize = require('../index'),
-    jsdom = require('jsdom'),
-    jsonToHtml= htmlize.toHtml;
+// var should = require('chai').should(),
+//     htmlize = require('../index'),
+//     jsdom = require('jsdom').jsdom,
+//     jsonToHtml= htmlize.toHtml;
 
-var dom = jsdom.defaultLevel;
+// var dom = jsdom.defaultLevel;
 
 
-// QuerySelector must be turned on on the specificdocument we're creating
+// // QuerySelector must be turned on on the specific document we're creating
 
-describe('#htmlstring', function() {
-  it('returns a html string for the given json object', function() {
-    jsonToHtml({'name' : 'mongo'}).should.equal("{<div style='margin-left: 30px;'><div style='display: inline;'><strong>name</strong>:  <span style='overflow:auto;'>'mongo'</span></div></div>}");
-  });
-});
+// describe('#generates the dom for the given json', function() {
+//   it('returns the dom json object', function() {
+//     var dom = jsdom.
+//           jsonToHtml({"name": "mongo", "type": "db", "newkey": { "foo" : "bar" } }).should.equal(??)
+
+//   });
+// });
 
 
