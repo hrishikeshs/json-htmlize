@@ -19,23 +19,26 @@ var htmlize = require('json-htmlize').toHtml;
 var html = htmlize({name: "mongo", type: "db", type: "nosql-database"}); 
 ```
 
-example
+examples
 =======
 
 ```
 var s = require('json-htmlize');
 
-var html = s.toHtml({name: "mongo", type: "db", type: "nosql-database"}); 
+var dom = s.toHtmlDom({name: "mongo", type: "db", type: "nosql-database"}); //returns a dom node.
 
-//html is a string that looks like this:
-'{<div style=\'margin-left: 30px;\'><div style=\'display: inline;\'><strong>name</strong>:  <span style=\'overflow:auto;\'>\'mongo\'</span></div>,<br /><div style=\'display: inline;\'><strong>type</strong>:  <span style=\'overflow:auto;\'>\'nosql-database\'</span></div></div>}'
+document.body.appendChild(dom); //Pretty print your json object right in the browser.
 
-var elem = document.createElement('div');
+//you can also obtain the dom generated as a string
 
-elem.innerHTML = html;
+var htmlString = s.toHtmlString({name: "mongo", type: "db", type: "nosql-database"}); 
 
-document.body.appendChild(elem); //Pretty print your json object right in the browser.
+console.log(htmlString);
+```
 
+prints out:
+```
+"<span>{</span><div style="margin-left: 30px;"><strong>name:  </strong><span>mongo</span>,</div><div style="margin-left: 30px;"><strong>type:  </strong><span>nosql-database</span></div><span>}</span>"
 ```
 
 Tests
