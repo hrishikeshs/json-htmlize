@@ -11,9 +11,9 @@
 
 module.exports = {
 
-  toHtml: function toHtml(json) {
+  toHtmlDom: function ( json ) {
 
-    function prettyPrint(json, root) {
+    function prettyPrint( json, root ) {
 
       var type = typeof json;
       console.log(json);
@@ -100,5 +100,9 @@ module.exports = {
     var root = document.createElement('div');
     var html = prettyPrint(json, root);
     return html;
+  },
+  
+  toHtmlString: function( json ) {
+    return this.toHtmlDom(json).innerHTML;
   }
 };
