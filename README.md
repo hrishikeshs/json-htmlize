@@ -55,7 +55,9 @@ run tests using
 ./node_modules/bin/mocha test/
 ```
 
-
+Dependencies
+============
+If you are using this in the browser, there are no dependencies, if you intend to use this with node, `jsdom` is a dependency which you'll have to install using `npm install -g jsdom`.
 
 Why?
 ====
