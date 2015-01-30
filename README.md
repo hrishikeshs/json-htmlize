@@ -14,9 +14,11 @@ Usage
 =====
 
 ```
-var htmlize = require('json-htmlize').toHtml;
+var htmlize = require('json-htmlize');
 
-var html = htmlize({name: "mongo", type: "db", type: "nosql-database"}); 
+var html = htmlize.toHtmlDom({name: "mongo", type: "db", type: "nosql-database"}); 
+
+var htmlString = htmlize.toHtmlString({name: "mongo", type: "db", type: "nosql-database"}); 
 ```
 
 examples
