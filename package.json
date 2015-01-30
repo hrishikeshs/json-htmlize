@@ -1,6 +1,6 @@
 {
   "name": "json-htmlize",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Utility that converts your JSON to a html representation",
   "main": "index.js",
   "scripts": {
