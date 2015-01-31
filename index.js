@@ -16,7 +16,6 @@ module.exports = {
     function prettyPrint( json, root ) {
 
       var type = typeof json;
-      console.log(json);
       switch(type) {
 
       case 'string' :        var d = document.createElement('span');
