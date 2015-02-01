@@ -1,37 +1,42 @@
 json-htmlize
 ============
 
-Spits out html from your json.
+Creates an HTML representation of a JSON object, for node and browser.
 
 
 Installing
 ==========
 ```
-npm install json-htmlize
+npm install --save json-htmlize
 ```
+
+* Browser : no dependencies !
+* node.js : `jsdom` is a dependency which you'll have to install using `npm install --save jsdom@3`.
 
 Usage
 =====
 
-```
+```javascript
 var htmlize = require('json-htmlize');
 
+// to DOM element
 var html = htmlize.toHtmlDom({name: "mongo", type: "db", type: "nosql-database"}); 
 
+// to string
 var htmlString = htmlize.toHtmlString({name: "mongo", type: "db", type: "nosql-database"}); 
 ```
 
 examples
-=======
+========
 
-```
+```javascript
 var s = require('json-htmlize');
 
-var dom = s.toHtmlDom({name: "mongo", type: "db", type: "nosql-database"}); //returns a dom node.
+var dom = s.toHtmlDom({name: "mongo", type: "db", type: "nosql-database"}); // returns a dom node.
 
-document.body.appendChild(dom); //Pretty print your json object right in the browser.
+document.body.appendChild(dom); // pretty print your json object right in the browser.
 
-//you can also obtain the dom generated as a string
+// you can also obtain the dom generated as a string
 
 var htmlString = s.toHtmlString({name: "mongo", type: "db", type: "nosql-database"}); 
 
@@ -43,23 +48,6 @@ prints out:
 "<span>{</span><div style="margin-left: 30px;"><strong>name:  </strong><span>mongo</span>,</div><div style="margin-left: 30px;"><strong>type:  </strong><span>nosql-database</span></div><span>}</span>"
 ```
 
-Tests
-=====
-
-```
-npm install --save-dev mocha
-npm install --save-dev chai
-```
-
-run tests using 
-
-```
-./node_modules/bin/mocha test/
-```
-
-Dependencies
-============
-If you are using this in the browser, there are no dependencies, if you intend to use this with node, `jsdom` is a dependency which you'll have to install using `npm install -g jsdom`.
 
 Why?
 ====
@@ -67,8 +55,21 @@ I just created this when I was learning to create a node module. I've seen sever
 
 
 Contributing
-=============
-Pull Requests welcome!
+============
+Pull Requests are welcome, thank you!
+
+You may want to create an issue first if you are not sure.
+
+* fork
+* clone
+* `cd json-htmlize`
+* `npm install`
+* `npm test`
+* (optional : start a branch)
+* add tests
+* add features
+* send pull request https://help.github.com/articles/be-social#pull-requests
+
 
 License
 ========
