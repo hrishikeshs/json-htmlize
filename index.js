@@ -76,7 +76,9 @@ module.exports = {
                                  div.style.marginLeft = "30px";
                                  colon = document.createTextNode(':  ');
                                  div.appendChild(strong).appendChild(colon);
-                                 div.appendChild(prettyPrint(json[keys[i]], div));
+                                 var json_keys_i = json[keys[i]];
+                                 if(!json_keys_i) json_keys_i = '(empty)'
+                                 div.appendChild(prettyPrint(json_keys_i, div));
                                  if((len - i) !== 1) {
                                    div.appendChild(document.createTextNode(','));
                                  }
